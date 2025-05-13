@@ -7,9 +7,9 @@ from pathlib import Path
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.url import UrlKnowledge
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.dalle import DalleTools
 from agno.tools.eleven_labs import ElevenLabsTools
@@ -28,9 +28,10 @@ agent_knowledge = UrlKnowledge(
         uri=str(tmp_dir.joinpath("lancedb")),
         table_name="agno_assist_knowledge",
         search_type=SearchType.hybrid,
-        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+       embedder=OllamaEmbedder(id="llama2:7b"),
     ),
 )
+
 agent_storage = SqliteStorage(
     table_name="agno_assist_sessions",
     db_file=str(tmp_dir.joinpath("agent_sessions.db")),
@@ -38,7 +39,7 @@ agent_storage = SqliteStorage(
 
 agno_assist = Agent(
     name="Agno Assist",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="llama3.1:8b"),
     description=dedent("""\
     You are AgnoAssist, an AI Agent specializing in Agno: A lighweight python framework for building multimodal agents.
     Your goal is to help developers understand and effectively use Agno by providing

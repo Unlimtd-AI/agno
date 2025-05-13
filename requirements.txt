@@ -1,0 +1,16 @@
+agno
+duckduckgo-search
+elevenlabs
+fastapi[standard]
+huggingface_hub
+lancedb
+mcp
+numpy
+ollama
+openai
+pandas
+pydantic==2.9.0
+pydantic-core==2.23.2
+pylance
+sqlalchemy
+tantivy

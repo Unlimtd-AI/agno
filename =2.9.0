@@ -1,0 +1,42 @@
+Collecting pydantic
+  Using cached pydantic-2.11.4-py3-none-any.whl (443 kB)
+Collecting pydantic-core==2.14.6
+  Using cached pydantic_core-2.14.6-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+Collecting typing-extensions!=4.7.0,>=4.6.0 (from pydantic-core==2.14.6)
+  Using cached typing_extensions-4.13.2-py3-none-any.whl (45 kB)
+Collecting annotated-types>=0.6.0 (from pydantic)
+  Using cached annotated_types-0.7.0-py3-none-any.whl (13 kB)
+INFO: pip is looking at multiple versions of pydantic to determine which version is compatible with other requirements. This could take a while.
+Collecting pydantic
+  Using cached pydantic-2.11.3-py3-none-any.whl (443 kB)
+  Using cached pydantic-2.11.2-py3-none-any.whl (443 kB)
+  Using cached pydantic-2.11.1-py3-none-any.whl (442 kB)
+  Using cached pydantic-2.11.0-py3-none-any.whl (442 kB)
+  Using cached pydantic-2.10.6-py3-none-any.whl (431 kB)
+  Using cached pydantic-2.10.5-py3-none-any.whl (431 kB)
+  Using cached pydantic-2.10.4-py3-none-any.whl (431 kB)
+INFO: pip is looking at multiple versions of pydantic to determine which version is compatible with other requirements. This could take a while.
+  Using cached pydantic-2.10.3-py3-none-any.whl (456 kB)
+  Using cached pydantic-2.10.2-py3-none-any.whl (456 kB)
+  Using cached pydantic-2.10.1-py3-none-any.whl (455 kB)
+  Using cached pydantic-2.10.0-py3-none-any.whl (454 kB)
+  Using cached pydantic-2.9.2-py3-none-any.whl (434 kB)
+INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. See https://pip.pypa.io/warnings/backtracking for guidance. If you want to abort this run, press Ctrl + C.
+  Using cached pydantic-2.9.1-py3-none-any.whl (434 kB)
+  Using cached pydantic-2.9.0-py3-none-any.whl (434 kB)
+  Using cached pydantic-2.8.2-py3-none-any.whl (423 kB)
+  Using cached pydantic-2.8.1-py3-none-any.whl (423 kB)
+  Using cached pydantic-2.8.0-py3-none-any.whl (423 kB)
+  Using cached pydantic-2.7.4-py3-none-any.whl (409 kB)
+  Using cached pydantic-2.7.3-py3-none-any.whl (409 kB)
+  Using cached pydantic-2.7.2-py3-none-any.whl (409 kB)
+  Using cached pydantic-2.7.1-py3-none-any.whl (409 kB)
+  Using cached pydantic-2.7.0-py3-none-any.whl (407 kB)
+  Using cached pydantic-2.6.4-py3-none-any.whl (394 kB)
+  Using cached pydantic-2.6.3-py3-none-any.whl (395 kB)
+  Using cached pydantic-2.6.2-py3-none-any.whl (394 kB)
+  Using cached pydantic-2.6.1-py3-none-any.whl (394 kB)
+  Using cached pydantic-2.6.0-py3-none-any.whl (394 kB)
+  Using cached pydantic-2.5.3-py3-none-any.whl (381 kB)
+Installing collected packages: typing-extensions, annotated-types, pydantic-core, pydantic
+Successfully installed annotated-types-0.7.0 pydantic-2.5.3 pydantic-core-2.14.6 typing-extensions-4.13.2

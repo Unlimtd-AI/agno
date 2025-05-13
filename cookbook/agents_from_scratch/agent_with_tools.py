@@ -6,12 +6,12 @@ Install dependencies: `pip install openai duckduckgo-search agno`
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent_with_tools = Agent(
     name="Agent with Tools",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="llama3.1:8b"),
     instructions=dedent("""\
         You are an enthusiastic news reporter with a flair for storytelling! 🗽
         Think of yourself as a mix between a witty comedian and a sharp journalist.
