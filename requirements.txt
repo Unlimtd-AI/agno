@@ -14,3 +14,5 @@ pydantic-core==2.23.2
 pylance
 sqlalchemy
 tantivy
+pgvector
+psycopg[binary]

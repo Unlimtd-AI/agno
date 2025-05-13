@@ -6,14 +6,14 @@ source .venv/bin/activate
 # Install the required dependencies:
 # uv pip install -U agno openai duckduckgo-search elevenlabs sqlalchemy 'fastapi[standard]' lancedb pylance tantivy pandas numpy huggingface_hub ollama mcp pydantic>=2.9.0 pydantic_core==2.14.6
 
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 
 # ------------------------------- SERVE OLLAMA ---------------------------------------------
 nohup ollama serve > ollama.log 2>&1 &
 
 echo "Pull Models"
+sleep 2
 
 ollama pull deepseek-r1:8b
 ollama pull llama3.1:8b # For tools
-# ollama pull nomic-embed-text 
 ollama pull llama2:7b # For embedding
