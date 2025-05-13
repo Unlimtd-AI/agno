@@ -5,6 +5,8 @@ Install dependencies: `pip install openai lancedb tantivy sqlalchemy agno`
 
 from pathlib import Path
 from textwrap import dedent
+from dotenv import load_dotenv
+import os
 
 from agno.agent import Agent
 from agno.embedder.ollama import OllamaEmbedder
@@ -13,7 +15,11 @@ from agno.models.ollama import Ollama
 from agno.storage.postgres import PostgresStorage
 from agno.vectordb.pgvector import PgVector, SearchType
 
-db_url = "postgresql+psycopg://postgres:q4ADyD7fMZkJ3L1v95J6@pg15-prod-rw.wallety.pg.db-eu2.zcloud.ws:60421/wallety"
+# Load environment variables from .env
+load_dotenv()
+
+# Use environment variable for database URL
+db_url = os.getenv("DB_URL")
 
 # Initialize knowledge & storage
 agent_knowledge = UrlKnowledge(
