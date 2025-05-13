@@ -4,22 +4,33 @@
 3. Run: `python cookbook/reasoning/tools/knowledge_tools.py` to run the agent
 """
 
+from dotenv import load_dotenv
+import os
+
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.url import UrlKnowledge
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.knowledge import KnowledgeTools
-from agno.vectordb.lancedb import LanceDb, SearchType
+from agno.vectordb.pgvector import PgVector, SearchType
+
+# Load environment variables from .env
+load_dotenv()
+
+# Use environment variable for database URL
+db_url = os.getenv("DB_URL")
 
 # Create a knowledge base containing information from a URL
 agno_docs = UrlKnowledge(
-    urls=["https://docs.agno.com/llms-full.txt"],
-    # Use LanceDB as the vector database and store embeddings in the `agno_docs` table
-    vector_db=LanceDb(
-        uri="tmp/lancedb",
-        table_name="agno_docs",
+     urls=[
+        "https://r.jina.ai/https://wallety.cash",
+        "https://r.jina.ai/https://wallety.cash/company/"
+    ],    
+    vector_db=PgVector(
+        table_name="wallety_assist_knowledge",
+        db_url=db_url,
         search_type=SearchType.hybrid,
-        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+        embedder=OllamaEmbedder(id="llama2:7b")
     ),
 )
 
@@ -32,7 +43,7 @@ knowledge_tools = KnowledgeTools(
 )
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="llama3.1:8b"),
     tools=[knowledge_tools],
     show_tool_calls=True,
     markdown=True,
@@ -40,5 +51,5 @@ agent = Agent(
 
 if __name__ == "__main__":
     # Load the knowledge base, comment after first run
-    agno_docs.load(recreate=True)
-    agent.print_response("How do I build multi-agent teams with Agno?", stream=True)
+    # agno_docs.load(recreate=True)
+    agent.print_response("What services do I have access to while using Wallety?", stream=True)

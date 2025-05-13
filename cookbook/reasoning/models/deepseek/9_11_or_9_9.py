@@ -1,20 +1,25 @@
+from dotenv import load_dotenv
+import os
+
 from agno.agent import Agent
 from agno.cli.console import console
-from agno.models.anthropic import Claude
 from agno.models.deepseek import DeepSeek
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
+
+# Load environment variables from .env
+load_dotenv()
 
 task = "9.11 and 9.9 -- which is bigger?"
 
-regular_agent_claude = Agent(model=Claude("claude-3-5-sonnet-20241022"))
+regular_agent_claude = Agent(model=Ollama(id="deepseek-r1:8b"))
 reasoning_agent_claude = Agent(
-    model=Claude("claude-3-5-sonnet-20241022"),
+    model=Ollama(id="deepseek-r1:8b"),
     reasoning_model=DeepSeek(id="deepseek-reasoner"),
 )
 
-regular_agent_openai = Agent(model=OpenAIChat(id="gpt-4o"))
+regular_agent_openai = Agent(model=Ollama(id="llama3.1:8b"))
 reasoning_agent_openai = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="llama3.1:8b"),
     reasoning_model=DeepSeek(id="deepseek-reasoner"),
 )
 
