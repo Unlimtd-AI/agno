@@ -100,7 +100,7 @@ agent_with_knowledge = Agent(
 
 if __name__ == "__main__":
     # Set to False after the knowledge base is loaded
-    load_knowledge = True
+    load_knowledge = False
     if load_knowledge:
         agent_knowledge.load()
 
