@@ -24,18 +24,26 @@ Run: `pip install openai sqlalchemy agno` to install dependencies
 import json
 from textwrap import dedent
 from typing import Optional
+from dotenv import load_dotenv
+import os
 
 import typer
 from agno.agent import Agent
-from agno.memory.v2.db.sqlite import SqliteMemoryDb
+from agno.memory.v2.db.postgres import PostgresMemoryDb
 from agno.memory.v2.memory import Memory
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.sqlite import SqliteStorage
 from rich.console import Console
 from rich.json import JSON
 from rich.panel import Panel
 from rich.prompt import Prompt
 
+
+# Load environment variables from .env
+load_dotenv()
+
+# Use environment variable for database URL
+db_url = os.getenv("DB_URL")
 
 def create_agent(user: str = "user"):
     session_id: Optional[str] = None
@@ -50,18 +58,20 @@ def create_agent(user: str = "user"):
         existing_sessions = agent_storage.get_all_session_ids(user)
         if len(existing_sessions) > 0:
             session_id = existing_sessions[0]
+            
+    memory = Memory(
+        db=PostgresMemoryDb(
+            table_name="user_memories",
+            connection_string=db_url
+        ),
+    )
 
     agent = Agent(
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="llama3.1:8b"),
         user_id=user,
         session_id=session_id,
-        # Configure memory system with SQLite storage
-        memory=Memory(
-            db=SqliteMemoryDb(
-                table_name="agent_memory",
-                db_file="tmp/agent_memory.db",
-            ),
-        ),
+        # Configure memory system with Postgres storage
+        memory=memory,
         enable_user_memories=True,
         enable_session_summaries=True,
         storage=agent_storage,
